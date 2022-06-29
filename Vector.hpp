@@ -28,31 +28,31 @@ namespace ft {
 
 		public:
 		//생성자
-			explicit Vector (const allocator_type& alloc = allocator_type())
+			explicit vector (const allocator_type& alloc = allocator_type())
 				: mPtr(NULL), mAlloc(alloc), mSize(0), mCapacity(0)
 			{};
 
-			explicit Vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
+			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
 				: mAlloc(alloc), mSize(0), mCapacity(0)
 			{
 				assign(n, val);
 			};
 
 			template <class InputIterator>
-			Vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
+			vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
 				: mPtr(NULL), mAlloc(alloc), mSize(0), mCapacity(0)
 			{
 				this->assign(first, last);
 			};
 
-			Vector (const Vector& x)
+			vector (const vector& x)
 				: mPtr(NULL), mAlloc(x.mAlloc), mSize(0), mCapacity(0)
 			{
 
 			};
 		//생성자 끝
 			~Vector();
-			Vector& operator= (const Vector& x);
+			vector& operator= (const vector& x);
 			iterator begin();
 			const_iterator begin() const;
 			iterator end();
@@ -266,19 +266,19 @@ namespace ft {
 				return (this->mAlloc);
 			};
 			template <class T, class Alloc>
-			bool operator== (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs);
+			bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
 			template <class T, class Alloc>
-			bool operator!= (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs);
+			bool operator!= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
 			template <class T, class Alloc>
-			bool operator<  (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs);
+			bool operator<  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
 			template <class T, class Alloc>
-			bool operator<= (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs);
+			bool operator<= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
 			template <class T, class Alloc>
-			bool operator>  (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs);
+			bool operator>  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
 			template <class T, class Alloc>
-			bool operator>= (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs);
+			bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
 			template <class T, class Alloc>
-			void swap (Vector<T,Alloc>& x, Vector<T,Alloc>& y);
+			void swap (vector<T,Alloc>& x, vector<T,Alloc>& y);
 		private:
 	};
 }
