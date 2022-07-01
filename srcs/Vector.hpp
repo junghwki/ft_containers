@@ -5,9 +5,11 @@
 #include <iostream>
 #include "VectorIterator.hpp"
 
-namespace ft {
-	template < typename T, typename Alloc = std::allocator<T> >
-	class Vector {
+namespace ft
+{
+	template <typename T, typename Alloc = std::allocator<T>>
+	class Vector
+	{
 		public:
 			typedef T												value_type;
 			typedef Alloc											allocator_type;
@@ -31,7 +33,8 @@ namespace ft {
 		//생성자
 			explicit Vector (const allocator_type& alloc = allocator_type())
 				: mPtr(NULL), mAlloc(alloc), mSize(0), mCapacity(0)
-			{};
+			{
+			};
 
 			explicit Vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
 				: mAlloc(alloc), mSize(0), mCapacity(0)
@@ -49,26 +52,63 @@ namespace ft {
 			Vector (const Vector& x)
 				: mPtr(NULL), mAlloc(x.mAlloc), mSize(0), mCapacity(0)
 			{
-
 			};
 		//생성자 끝
-			~Vector();
-			Vector& operator= (const Vector& x);
-			iterator begin();
-			const_iterator begin() const;
-			iterator end();
-			const_iterator end() const;
-			reverse_iterator rbegin();
-			const_reverse_iterator rbegin() const;
-			reverse_iterator rend();
-			const_reverse_iterator rend() const;
+			~Vector()
+			{
+			};
 
-			size_type size() const
+			Vector& operator= (const Vector& x)
+			{
+
+			};
+
+			iterator begin(void)
+			{
+				return (iterator(this->mArr));
+			};
+
+			const_iterator begin(void) const
+			{
+				return (const_iterator(this->mArr));
+			};
+
+			iterator end(void)
+			{
+				return (iterator(this->mArr + this->mSize));
+			};
+
+			const_iterator end(void) const
+			{
+				return (const_iterator(this->mArr + this->mSize));
+			};
+
+			reverse_iterator rbegin(void)
+			{
+				return (reverse_iterator(this->end()));
+			};
+
+			const_reverse_iterator rbegin(void) const
+			{
+				return (const_reverse_iterator(this->end()));
+			};
+
+			reverse_iterator rend(void)
+			{
+				return (reverse_iterator(this->begin()));
+			};
+
+			const_reverse_iterator rend(void) const
+			{
+				return (const_reverse_iterator(this->begin()));
+			};
+
+			size_type size(void) const
 			{
 				return (this->mSize)
 			};
 
-			size_type max_size() const
+			size_type max_size(void) const
 			{
 				return (this->mAlloc.max_size());
 			}
@@ -126,12 +166,12 @@ namespace ft {
 				}
 			};
 
-			size_type capacity() const
+			size_type capacity(void) const
 			{
 				return (this->mCapacity);
 			};
 
-			bool empty() const
+			bool empty(void) const
 			{
 				if (this->mSize)
 				{
@@ -181,28 +221,32 @@ namespace ft {
 				return (*(this->mPtr + n));
 			}
 
-			reference front()
+			reference front(void)
 			{
 				return (this->mPtr[0]);
 			}
 
-			const_reference front() const
+			const_reference front(void) const
 			{
 				return (this->mPtr[0]);
 			}
 
-			reference back()
+			reference back(void)
 			{
 				return (this->mPtr[this->mSize - 1]);
 			}
 
-			const_reference back() const
+			const_reference back(void) const
 			{
 				return (this->mPtr[this->mSize - 1]);
 			}
 
 			template <class InputIterator>
-			void assign (InputIterator first, InputIterator last);
+			void assign (InputIterator first, InputIterator last, typename ft::enable_if< !ft::is_integral< InputIterator>::value, InputIterator>::type* = NULL)
+			{
+				
+			};
+
 			void assign (size_type n, const value_type& val)
 			{
 				int idx = 0;
@@ -228,29 +272,56 @@ namespace ft {
 				if (this->mSize < this->mCapacity)
 				{
 					this->mPtr[this->mSize + 1] = val;
-					this->mSize++;
+					++this->mSize;
+					//전위가 빠름 아무튼 빠름
 				}
 				else
 				{
 					this->expandCapacity(this->mCapacity * 2);
+					this->mPtr[this->mSize + 1] = val;
+					++this->mSize;
+					//전위가 빠름 아무튼 빠름
 				}
 				
 			};
 
-			void pop_back()
+			void pop_back(void)
 			{
 				this->mAlloc.destory(this->mPtr[this->mSize - 1]);
 			}
 
-			iterator insert (iterator position, const value_type& val);
-			void insert (iterator position, size_type n, const value_type& val);
-			template <class InputIterator>
-			void insert (iterator position, InputIterator first, InputIterator last);
+			iterator insert (iterator position, const value_type& val)
+			{
 
-			iterator erase (iterator position);
-			iterator erase (iterator first, iterator last);
-			void swap (vector& x);
-			void clear()
+			};
+
+			void insert (iterator position, size_type n, const value_type& val)
+			{
+
+			};
+
+			template <class InputIterator>
+			void insert (iterator position, InputIterator first, InputIterator last)
+			{
+
+			};
+
+			iterator erase (iterator position)
+			{
+
+			};
+
+			iterator erase (iterator first, iterator last)
+			{
+
+			};
+
+			void swap (Vector& x)
+			{
+
+			};
+
+			void clear(void)
 			{
 				int idx = 0;
 
@@ -262,22 +333,47 @@ namespace ft {
 				this->mSize = 0;
 			};
 
-			allocator_type get_allocator() const
+			allocator_type get_allocator(void) const
 			{
 				return (this->mAlloc);
 			};
+
 			template <class T, class Alloc>
-			bool operator== (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs);
+			bool operator== (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs)
+			{
+				
+			};
+
 			template <class T, class Alloc>
-			bool operator!= (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs);
+			bool operator!= (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs)
+			{
+
+			};
+
 			template <class T, class Alloc>
-			bool operator<  (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs);
+			bool operator<  (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs)
+			{
+
+			};
+
 			template <class T, class Alloc>
-			bool operator<= (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs);
+			bool operator<= (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs)
+			{
+
+			};
+
 			template <class T, class Alloc>
-			bool operator>  (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs);
+			bool operator>  (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs)
+			{
+
+			};
+
 			template <class T, class Alloc>
-			bool operator>= (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs);
+			bool operator>= (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs)
+			{
+
+			};
+
 			template <class T, class Alloc>
 			void swap (Vector<T,Alloc>& x, Vector<T,Alloc>& y);
 		private:

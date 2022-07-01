@@ -5,9 +5,9 @@
 
 int main(void)
 {
-	ft::Vector<int> a;
+	ft::vector<int> a;
 
-	a.push_back(3);
+	a.push_back(34);
 
 	std::cout << a[0] << std::endl;
 }

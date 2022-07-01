@@ -1,6 +1,8 @@
 #ifndef ITERATOR_HPP
 # define ITERATOR_HPP
 
+#include <iostream>
+
 namespace ft
 {
 	class input_iterator_tag {};
@@ -141,6 +143,7 @@ namespace ft
 			return (*(*this + n));
 		}
 	};
+
 	template <typename _Iterator>
 	bool operator==(const reverse_iterator<_Iterator> &__x,
 					const reverse_iterator<_Iterator> &__y)
