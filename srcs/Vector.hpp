@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <iostream>
+#include "VectorIterator.hpp"
 
 namespace ft {
 	template < typename T, typename Alloc = std::allocator<T> >
@@ -14,8 +15,8 @@ namespace ft {
 			typedef typename allocator_type::const_reference		const_reference;
 			typedef typename allocator_type::pointer				pointer;
 			typedef typename allocator_type::const_pointer			const_pointer;
-			typedef typename ft::VectorIter<T, false>				iterator;
-			typedef typename ft::VectorIter<T, true>				const_iterator;
+			typedef typename ft::VectorIterator<T, false>			iterator;
+			typedef typename ft::VectorIterator<T, true>			const_iterator;
 			typedef typename ft::reverse_iterator<iterator>			reverse_iterator;
 			typedef typename ft::reverse_iterator<const_iterator>	const_reverse_iterator;
 			typedef size_t											size_type;

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Iterator.hpp"
+#include "Utils.hpp"
 
 namespace ft
 {

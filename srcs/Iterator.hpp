@@ -39,12 +39,13 @@ namespace ft
 		typedef const T*												pointer;
 		typedef const T&												reference;
 	};
-	
+
 	/* https://cplusplus.com/reference/iterator/reverse_iterator/ */
 	template <typename Iterator>
 	class reverse_iterator
 	{
 	public:
+		typedef Iterator												iterator_type;
 		typedef typename iterator_traits<Iterator>::iterator_category	iterator_category;
 		typedef typename iterator_traits<Iterator>::value_type			value_type;
 		typedef typename iterator_traits<Iterator>::difference_type		difference_type;
@@ -66,8 +67,8 @@ namespace ft
 			: mCurrent(Iter.mCurrent)
 		{}
 
-		template <typename Iter>
-		reverse_iterator(const reverse_iterator<Iter> &Iter)
+		template <typename _Iter>
+		reverse_iterator(const reverse_iterator<_Iter> &Iter)
 			: mCurrent(Iter.base())
 		{}
 
