@@ -56,11 +56,12 @@ namespace ft
 		//생성자 끝
 			~Vector()
 			{
+				
 			};
 
 			Vector& operator= (const Vector& x)
 			{
-
+				
 			};
 
 			iterator begin(void)
@@ -115,12 +116,8 @@ namespace ft
 
 			void expandCapacity(size_type n)
 			{
-				value_type*	tempPtr;
+				value_type*		tempPtr;
 
-				/*if (n < this->mSize)
-				{
-					error
-				}*/
 				tempPtr = this->mAlloc.allocate(n);
 				memcpy(tempPtr, this->mPtr, this->mSize);
 				this->mAlloc.destroy(this->mPtr);
@@ -131,21 +128,19 @@ namespace ft
 
 			void resize (size_type n, value_type val = value_type())
 			{
-				value_type*	tempPtr;
-				size_type	tempCapacity;
-				int			idx;
+				value_type*		tempPtr;
+				size_type		tempCapacity;
+				int				idx;
 
 				if (n > this->mCapacity)
 				{
 					tempCapacity = this->mCapacity;
 					if (n > this->mCapacity * 2)
 					{
-						// this->mCapacity = n;
 						this->expandCapacity(n);
 					}
 					else
 					{
-						// this->mCapacity *= 2;
 						this->expandCapacity(this->mCapacity * 2);
 					}
 				}
@@ -186,9 +181,8 @@ namespace ft
 				{
 					throw std::length_error("allocator<T>::allocate(size_t n) 'n' exceeds maximum supported size");
 				}
-				if (n > this->mCapacity)
+				if (this->mCapacity < n)
 				{
-					// this->mCapacity = n;
 					this->expandCapacity(n);
 				}
 			};
@@ -247,6 +241,12 @@ namespace ft
 				
 			};
 
+			template <class InputIterator>
+			void assign (InputIterator first, InputIterator last)
+			{
+
+			};
+
 			void assign (size_type n, const value_type& val)
 			{
 				int idx = 0;
@@ -272,22 +272,21 @@ namespace ft
 				if (this->mSize < this->mCapacity)
 				{
 					this->mPtr[this->mSize + 1] = val;
-					++this->mSize;
-					//전위가 빠름 아무튼 빠름
 				}
 				else
 				{
 					this->expandCapacity(this->mCapacity * 2);
 					this->mPtr[this->mSize + 1] = val;
-					++this->mSize;
-					//전위가 빠름 아무튼 빠름
 				}
+				++this->mSize;
+				//전위가 빠름 아무튼 빠름
 				
 			};
 
 			void pop_back(void)
 			{
-				this->mAlloc.destory(this->mPtr[this->mSize - 1]);
+				--this->mSize;
+				this->mAlloc.destory(this->mPtr[this->mSize]);
 			}
 
 			iterator insert (iterator position, const value_type& val)
