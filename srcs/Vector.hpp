@@ -56,12 +56,22 @@ namespace ft
 		//생성자 끝
 			~Vector()
 			{
-				
+				if (this->mCapacity > 0)
+				{
+					this->clear();
+					this->mAlloc.deallocate(this->mPtr, this->mCapacity);
+				}
 			};
 
 			Vector& operator= (const Vector& x)
 			{
-				
+				if (this == &x)
+				{
+					return (*this);
+				}
+				this->reserve(x.mSize);
+				this->assign(x.begin(), x.end());
+				return (*this);
 			};
 
 			iterator begin(void)
@@ -116,14 +126,24 @@ namespace ft
 
 			void expandCapacity(size_type n)
 			{
-				value_type*		tempPtr;
+				value_type*		tempPtr = this->mAlloc.allocate(n);	
 
-				tempPtr = this->mAlloc.allocate(n);
-				memcpy(tempPtr, this->mPtr, this->mSize);
-				this->mAlloc.destroy(this->mPtr);
-				this->mAlloc.deallocate(this->mPtr, this->mCapacity);
-				this->mCapacity = n;
-				this->mPtr = tempPtr;
+				if (this->mCapacity == 0)
+				{
+					this->mPtr = this->mAlloc.allocate(n);
+					this->mCapacity = n;
+				}
+				else
+				{
+					memcpy(tempPtr, this->mPtr, this->mSize);
+					for (size_type idx = 0; idx < this->mCapacity; ++idx)
+					{
+						this->mAlloc.destroy(this->mPtr + idx);
+					}
+					this->mAlloc.deallocate(this->mPtr, this->mCapacity);
+					this->mCapacity = n;
+					this->mPtr = tempPtr;
+				}
 			};
 
 			void resize (size_type n, value_type val = value_type())
@@ -154,7 +174,10 @@ namespace ft
 						idx++;
 					}
 					memcpy(tempPtr, this->mPtr, this->mSize);
-					this->mAlloc.destroy(this->mPtr);
+					for (size_type idx = 0; idx < this->mCapacity; ++idx)
+					{
+						this->mAlloc.destroy(this->mPtr + idx);
+					}
 					this->mAlloc.deallocate(this->mPtr, tempCapacity);
 					this->mSize = n;
 					this->mPtr = tempPtr;
@@ -249,22 +272,10 @@ namespace ft
 
 			void assign (size_type n, const value_type& val)
 			{
-				int idx = 0;
-
 				this->clear();
-				if (n > this->mCapacity)
-				{
-					this->mAlloc.destroy(this->mPtr);
-					this->mAlloc.deallocate(this->mPtr, this->mCapacity);
-					this->mCapacity = n;
-					this->mPtr = this->mAlloc.allocate(this->mCapacity);
-				}
-				while (idx < n)
-				{
-					this->mPtr[idx] = val;
-					idx++; 
-				}
-				this->mSize = n;
+				this->reserve(n);
+				for (size_type idx = 0; idx < n; ++idx)
+					this->push_back(val);
 			};
 
 			void push_back (const value_type& val)
@@ -291,13 +302,40 @@ namespace ft
 
 			iterator insert (iterator position, const value_type& val)
 			{
+				size_type		idx = 0;
+				const_iterator	it = this->begin();
 
+				while (it != position)
+				{
+					it++;
+					idx++;
+				}
+				this->insert(position, 1, val);
+				return (iterator(this->mPtr + idx));
 			};
 
 			void insert (iterator position, size_type n, const value_type& val)
 			{
-
-			};
+				// size_type pos = 0;
+				// for (const_iterator iter = this->begin(); iter != position; ++iter)
+				// {
+				// 	pos++;
+				// }
+				// if (this->_capacity < this->_size + n && this->_capacity * 2 < this->_size + n)
+				// {
+				// 	this->_expandCapacity(this->_size + n);
+				// }
+				// else if (this->_capacity < this->_size + n)
+				// {
+				// 	this->_expandCapacity();
+				// }
+				// memmove(reinterpret_cast<void *>(&this->_arr[pos + n]), reinterpret_cast<void *>(&this->_arr[pos]), sizeof(value_type) * (this->_size - pos));
+				// for (size_type i = 0; i < n; ++i)
+				// {
+				// 	this->_arr[pos + i] = val;
+				// }
+				// this->_size += n;
+			}
 
 			template <class InputIterator>
 			void insert (iterator position, InputIterator first, InputIterator last)
@@ -307,12 +345,44 @@ namespace ft
 
 			iterator erase (iterator position)
 			{
+				// size_type	idx = 0;
 
+				// for (const_iterator it = this->begin(); it != position; ++it)
+				// {
+				// 	idx++;
+				// }
+				// this->mAlloc.destroy(this->mPtr[idx]);
+				// for (size_type i = 0; i < this->mSize - idx - 1; ++i)
+				// {
+				// 	this->mPtr[idx + i] = this->mPtr[idx + i + 1];
+				// }
+				// --this->mSize;
+				// return (position);
+				return (this->erase(position, position + 1));
 			};
 
 			iterator erase (iterator first, iterator last)
 			{
+				size_type	pos = 0;
+				size_type	n = 0;
+				iterator	it = this->begin();
 
+				while (it != first)
+				{
+					pos++;
+					it++;
+				}
+				while (it != last)
+				{
+					this->mAlloc.destroy(this->mPtr + pos + n++);
+					it++;
+				}
+				for (size_type idx = 0; idx < this->mSize - pos - n; ++idx)
+				{
+					this->mPtr[pos + idx] = this->mPtr[pos + idx + n];
+				}
+				this->mSize -= n;
+				return (first);
 			};
 
 			void swap (Vector& x)
@@ -340,7 +410,7 @@ namespace ft
 			template <class T, class Alloc>
 			bool operator== (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs)
 			{
-				
+
 			};
 
 			template <class T, class Alloc>
