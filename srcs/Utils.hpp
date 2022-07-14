@@ -135,7 +135,7 @@ namespace ft
 	{
 		while (first1 != last1)
 		{
-			if (!(*first1 == *first2))
+			if (*first1 != *first2)
 			{
 				return (false);
 			}

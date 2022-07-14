@@ -8,8 +8,8 @@ namespace ft
 	class input_iterator_tag {};
 	class output_iterator_tag {};
 	class forward_iterator_tag : public input_iterator_tag {};
-	class bidrectional_iterator_tag : public forward_iterator_tag {};
-	class random_access_iterator_tag : public bidrectional_iterator_tag {};
+	class bidirectional_iterator_tag : public forward_iterator_tag {};
+	class random_access_iterator_tag : public bidirectional_iterator_tag {};
 
 	/* https://cplusplus.com/reference/iterator/iterator_traits/ */
 	template <typename Iterator>
