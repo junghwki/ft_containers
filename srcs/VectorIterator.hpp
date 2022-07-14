@@ -29,8 +29,8 @@ namespace ft
 				: mPtr(Array)
 			{}
 
-			VectorIterator(const VectorIterator<value_type, false>& iter)
-				: mPtr(iter.getPtr())
+			VectorIterator(const VectorIterator<value_type, false>& it)
+				: mPtr(it.getPtr())
 			{}
 
 			virtual ~VectorIterator()
@@ -41,30 +41,30 @@ namespace ft
 				return (this->mPtr);
 			}
 
-			VectorIterator& operator=(const VectorIterator& iter)
+			VectorIterator& operator=(const VectorIterator& it)
 			{
-				this->mPtr = iter.mPtr;
+				this->mPtr = it.mPtr;
 				return (*this);
 			}
 
-			bool operator==(const VectorIterator<value_type, false>& iter) const
+			bool operator==(const VectorIterator<value_type, false>& it) const
 			{
-				return (this->mPtr == iter.getPtr());
+				return (this->mPtr == it.getPtr());
 			}
 
-			bool operator==(const VectorIterator<value_type, true>& iter) const
+			bool operator==(const VectorIterator<value_type, true>& it) const
 			{
-				return (this->mPtr == iter.getPtr());
+				return (this->mPtr == it.getPtr());
 			}
 
-			bool operator!=(const VectorIterator<value_type, false>& iter) const
+			bool operator!=(const VectorIterator<value_type, false>& it) const
 			{
-				return (this->mPtr != iter.getPtr());
+				return (this->mPtr != it.getPtr());
 			}
 
-			bool operator!=(const VectorIterator<value_type, true>& iter) const
+			bool operator!=(const VectorIterator<value_type, true>& it) const
 			{
-				return (this->mPtr != iter.getPtr());
+				return (this->mPtr != it.getPtr());
 			}
 
 			reference operator*() const
@@ -115,14 +115,14 @@ namespace ft
 				return (VectorIterator(this->mPtr - n));
 			}
 
-			difference_type operator-(const VectorIterator<value_type, false>& iter) const
+			difference_type operator-(const VectorIterator<value_type, false>& it) const
 			{
-				return (this->mPtr - iter.getPtr());
+				return (this->mPtr - it.getPtr());
 			}
 
-			difference_type operator-(const VectorIterator<value_type, true>& iter) const
+			difference_type operator-(const VectorIterator<value_type, true>& it) const
 			{
-				return (this->mPtr - iter.getPtr());
+				return (this->mPtr - it.getPtr());
 			}
 
 			VectorIterator& operator+=(const difference_type n)
@@ -137,44 +137,44 @@ namespace ft
 				return (*this);
 			}
 
-			bool operator<(const VectorIterator<value_type, false>& iter) const
+			bool operator<(const VectorIterator<value_type, false>& it) const
 			{
-				return (this->mPtr < iter.getPtr());
+				return (this->mPtr < it.getPtr());
 			}
 
-			bool operator<(const VectorIterator<value_type, true>& iter) const
+			bool operator<(const VectorIterator<value_type, true>& it) const
 			{
-				return (this->mPtr < iter.getPtr());
+				return (this->mPtr < it.getPtr());
 			}
 
-			bool operator<=(const VectorIterator<value_type, false>& iter) const
+			bool operator<=(const VectorIterator<value_type, false>& it) const
 			{
-				return (this->mPtr <= iter.getPtr());
+				return (this->mPtr <= it.getPtr());
 			}
 
-			bool operator<=(const VectorIterator<value_type, true>& iter) const
+			bool operator<=(const VectorIterator<value_type, true>& it) const
 			{
-				return (this->mPtr <= iter.getPtr());
+				return (this->mPtr <= it.getPtr());
 			}
 
-			bool operator>(const VectorIterator<value_type, false>& iter) const
+			bool operator>(const VectorIterator<value_type, false>& it) const
 			{
-				return (this->mPtr > iter.getPtr());
+				return (this->mPtr > it.getPtr());
 			}
 
-			bool operator>(const VectorIterator<value_type, true>& iter) const
+			bool operator>(const VectorIterator<value_type, true>& it) const
 			{
-				return (this->mPtr > iter.getPtr());
+				return (this->mPtr > it.getPtr());
 			}
 
-			bool operator>=(const VectorIterator<value_type, false>& iter) const
+			bool operator>=(const VectorIterator<value_type, false>& it) const
 			{
-				return (this->mPtr >= iter.getPtr());
+				return (this->mPtr >= it.getPtr());
 			}
 
-			bool operator>=(const VectorIterator<value_type, true>& iter) const
+			bool operator>=(const VectorIterator<value_type, true>& it) const
 			{
-				return (this->mPtr >= iter.getPtr());
+				return (this->mPtr >= it.getPtr());
 			}
 
 			reference operator[](difference_type n) const
@@ -184,9 +184,9 @@ namespace ft
 	};
 
 	template <typename T, bool isConst>
-	VectorIterator<T, isConst>	operator+(const typename VectorIterator<T, isConst>::difference_type n, const VectorIterator<T, isConst>& iter)
+	VectorIterator<T, isConst>	operator+(const typename VectorIterator<T, isConst>::difference_type n, const VectorIterator<T, isConst>& it)
 	{
-		return (VectorIterator<T, isConst>(iter.getPtr() + n));
+		return (VectorIterator<T, isConst>(it.getPtr() + n));
 	}
 }
 
