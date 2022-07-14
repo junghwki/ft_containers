@@ -26,39 +26,39 @@ namespace ft
 	public:
 		MapIterator()
 		{
-		};
+		}
 
 		MapIterator(Node* node, Node* nullNode)
 			: mNode(node), mNullNode(nullNode)
 		{
-		};
+		}
 
 		MapIterator(MapIterator<value_type, comp, allocator_type, false> const &arg)
 		{
 			mNode = arg.getNode();
 			mNullNode = arg.getNullNode();
-		};
+		}
 
 		MapIterator &operator=(MapIterator const &arg)
 		{
 			mNode = arg.mNode;
 			mNullNode = arg.mNullNode;
 			return *this;
-		};
+		}
 
 		~MapIterator()
 		{
-		};
+		}
 
 		Node* getNode() const
 		{
 			return this->mNode;
-		};
+		}
 
 		Node* getNullNode() const
 		{
 			return this->mNullNode;
-		};
+		}
 
 		bool operator==(MapIterator<value_type, comp, allocator_type, true> const &arg) 
 		{
@@ -83,12 +83,12 @@ namespace ft
 		reference operator*() const
 		{
 			return this->mNode->mValue;
-		};
+		}
 
 		pointer operator->() const
 		{
 			return &(operator*());
-		};
+		}
 
 		MapIterator &operator++()
 		{
@@ -113,7 +113,7 @@ namespace ft
 				this->mNode = this->mNullNode;
 			}
 			return (*this);
-		};
+		}
 
 		MapIterator operator++(int)
 		{
@@ -121,7 +121,7 @@ namespace ft
 
 			++(*this);
 			return (ret);
-		};
+		}
 
 		MapIterator &operator--()
 		{
@@ -148,10 +148,8 @@ namespace ft
 				}
 				this->mNode = this->mNode->mParent;
 			}
-
-			std::cout << this->mNode->mValue.second << std::endl;
 			return (*this);
-		};
+		}
 
 		MapIterator operator--(int)
 		{
@@ -159,8 +157,8 @@ namespace ft
 
 			--(*this);
 			return (ret);
-		};
+		}
 	};
-} // namespace ft
+}
 
 #endif

@@ -1,179 +1,6 @@
-// #ifndef VECTORITERATOR_HPP
-// # define VECTORITERATOR_HPP
-
-// #include <iostream>
-// #include "Iterator.hpp"
-// #include "Utils.hpp"
-
-// namespace ft
-// {
-// template <typename T, bool isConst>
-// class VectorIterator
-// {
-// public:
-// 	typedef T																			value_type;
-// 	typedef std::ptrdiff_t																difference_type;
-// 	typedef std::size_t																	size_type;
-// 	typedef typename ft::typeSelector<value_type*, const value_type*, isConst>::type	pointer;
-// 	typedef typename ft::typeSelector<value_type&, const value_type&, isConst>::type	reference;
-// 	typedef typename ft::random_access_iterator_tag										iterator_category;
-
-// private:
-// 	pointer mArr;
-
-// public:
-// 	VectorIterator()
-// 		: mArr(NULL)
-// 	{
-// 	}
-
-// 	VectorIterator(const pointer Array)
-// 		: mArr(Array)
-// 	{
-// 	}
-
-// 	VectorIterator(const iterator Iter)
-// 	{
-// 		this->mArr = Iter.getPtr();
-// 	}
-
-// 	pointer getPtr() const
-// 	{
-// 		return (this->mArr);
-// 	}
-
-// 	~VectorIterator();
-
-// 	VectorIterator<typename value_type> &operator=(const VectorIterator arg)
-// 	{
-// 		this->mArr(arg.getPtr());
-// 	}
-
-// 	VectorIterator<typename T> &operator++(void)
-// 	{
-// 		this->mArr++;
-// 		return (*this);
-// 	}
-
-// 	VectorIterator<typename T> &operator--(void)
-// 	{
-// 		this->mArr--;
-// 		return (*this);
-// 	}
-
-// 	VectorIterator<typename T> operator++(int)
-// 	{
-// 		VectorIterator<typename T> ret(*this);
-
-// 		this->mArr++;
-// 		return (ret);
-// 	}
-
-// 	VectorIterator<typename T> operator--(int)
-// 	{
-// 		VectorIterator<typename T> ret(*this);
-
-// 		this->mArr--;
-// 		return (ret);
-// 	}
-
-// 	VectorIterator<typename T> operator[](const int index)
-// 	{
-// 		return (this->mArr[index])
-// 	}
-
-// 	const VectorIterator<typename T> operator[](const int index) const
-// 	{
-// 		return (this->mArr[index])
-// 	}
-
-// 	const VectorIterator<typename T> operator*() const
-// 	{
-// 		return (*this->mArr);
-// 	}
-
-// 	const VectorIterator<typename T> operator->() const
-// 	{
-// 		return (*this->mArr);
-// 	}
-
-// 	const VectorIterator<typename T> operator+(size_t size) const
-// 	{
-// 		VectorIterator<typename T> temp;
-
-// 		temp = *this;
-// 		temp.mArr += size;
-// 		return (temp);
-// 	}
-
-// 	const VectorIterator<typename T> operator-(size_t size) const
-// 	{
-// 		VectorIterator<typename T> temp;
-
-// 		temp = *this;
-// 		temp.mArr -= size;
-// 		return (temp);
-// 	}
-
-// 	ptrdiff_t operator-(VectorIterator arg) const
-// 	{
-// 		return (this->mArr -= arg.getPtr());
-// 	}
-
-// 	VectorIterator<typename T> operator+=(size_t size) const
-// 	{
-// 		return (this->mArr += arg.getPtr());
-// 	}
-
-// 	VectorIterator<typename T> operator-=(size_t size) const
-// 	{
-// 		return (this->mArr -= arg.getPtr());
-// 	}
-
-// 	template <typename T1>
-// 	bool operator==(VectorIterator<T1> &temp)
-// 	{
-// 		return (this->mArr == temp.getPtr());
-// 	}
-
-// 	template <typename T1>
-// 	bool operator!=(VectorIterator<T1> &temp)
-// 	{
-// 		return (this->mArr != temp.getPtr());
-// 	}
-
-// 	template <typename T1>
-// 	bool operator>(VectorIterator<T1> &temp)
-// 	{
-// 		return (this->mArr > temp.getPtr());
-// 	}
-
-// 	template <typename T1>
-// 	bool operator<(VectorIterator<T1> &temp)
-// 	{
-// 		return (this->mArr < temp.getPtr());
-// 	}
-
-// 	template <typename T1>
-// 	bool operator>=(VectorIterator<T1> &temp)
-// 	{
-// 		return (this->mArr >= temp.getPtr());
-// 	}
-
-// 	template <typename T1>
-// 	bool operator<=(VectorIterator<T1> &temp)
-// 	{
-// 		return (this->mArr <= temp.getPtr());
-// 	}
-// };
-// } // namespace ft
-
-// #endif
-
 #ifndef VECTORITERATOR_HPP
 # define VECTORITERATOR_HPP
 
-# include "iostream"
 # include "Iterator.hpp"
 # include "Utils.hpp"
 
@@ -191,72 +18,68 @@ namespace ft
 			typedef typename ft::random_access_iterator_tag										iterator_category;
 
 		private:
-			pointer mArr;
+			pointer mPtr;
 		
 		public:
 			VectorIterator()
-				: mArr(NULL)
-			{
-			}
+				: mPtr(NULL)
+			{}
 
 			VectorIterator(pointer Array)
-				: mArr(Array)
-			{
-			}
+				: mPtr(Array)
+			{}
 
-			VectorIterator(const VectorIterator<value_type, false>& Iter)
-				: mArr(Iter.getPtr())
-			{
-			}
+			VectorIterator(const VectorIterator<value_type, false>& iter)
+				: mPtr(iter.getPtr())
+			{}
 
 			virtual ~VectorIterator()
-			{
-			}
+			{}
 
 			pointer getPtr(void) const
 			{
-				return (this->mArr);
+				return (this->mPtr);
 			}
 
-			VectorIterator& operator=(const VectorIterator& Iter)
+			VectorIterator& operator=(const VectorIterator& iter)
 			{
-				this->mArr = Iter.mArr;
+				this->mPtr = iter.mPtr;
 				return (*this);
 			}
 
-			bool operator==(const VectorIterator<value_type, false>& Iter) const
+			bool operator==(const VectorIterator<value_type, false>& iter) const
 			{
-				return (this->mArr == Iter.getPtr());
+				return (this->mPtr == iter.getPtr());
 			}
 
-			bool operator==(const VectorIterator<value_type, true>& Iter) const
+			bool operator==(const VectorIterator<value_type, true>& iter) const
 			{
-				return (this->mArr == Iter.getPtr());
+				return (this->mPtr == iter.getPtr());
 			}
 
-			bool operator!=(const VectorIterator<value_type, false>& Iter) const
+			bool operator!=(const VectorIterator<value_type, false>& iter) const
 			{
-				return (this->mArr != Iter.getPtr());
+				return (this->mPtr != iter.getPtr());
 			}
 
-			bool operator!=(const VectorIterator<value_type, true>& Iter) const
+			bool operator!=(const VectorIterator<value_type, true>& iter) const
 			{
-				return (this->mArr != Iter.getPtr());
+				return (this->mPtr != iter.getPtr());
 			}
 
 			reference operator*() const
 			{
-				return (*(this->mArr));
+				return (*(this->mPtr));
 			}
 
 			pointer operator->() const
 			{
-				return (this->mArr);
+				return (this->mPtr);
 			}
 
 			VectorIterator& operator++()
 			{
-				++this->mArr;
+				++this->mPtr;
 				return (*this);
 			}
 
@@ -270,7 +93,7 @@ namespace ft
 
 			VectorIterator& operator--()
 			{
-				--this->mArr;
+				--this->mPtr;
 				return (*this);
 			}
 
@@ -284,88 +107,86 @@ namespace ft
 
 			VectorIterator operator+(const int& n) const
 			{
-				return (VectorIterator(this->mArr + n));
+				return (VectorIterator(this->mPtr + n));
 			}
 			
 			VectorIterator operator-(const int& n) const
 			{
-				return (VectorIterator(this->mArr - n));
+				return (VectorIterator(this->mPtr - n));
 			}
 
-			difference_type operator-(const VectorIterator<value_type, false>& Iter) const
+			difference_type operator-(const VectorIterator<value_type, false>& iter) const
 			{
-				return (this->mArr - Iter.getPtr());
+				return (this->mPtr - iter.getPtr());
 			}
 
-			difference_type operator-(const VectorIterator<value_type, true>& Iter) const
+			difference_type operator-(const VectorIterator<value_type, true>& iter) const
 			{
-				return (this->mArr - Iter.getPtr());
+				return (this->mPtr - iter.getPtr());
 			}
 
 			VectorIterator& operator+=(const difference_type n)
 			{
-				this->mArr += n;
-
+				this->mPtr += n;
 				return (*this);
 			}
 
 			VectorIterator& operator-=(const difference_type n)
 			{
-				this->mArr -= n;
-
+				this->mPtr -= n;
 				return (*this);
 			}
 
-			bool operator<(const VectorIterator<value_type, false>& Iter) const
+			bool operator<(const VectorIterator<value_type, false>& iter) const
 			{
-				return (this->mArr < Iter.getPtr());
+				return (this->mPtr < iter.getPtr());
 			}
 
-			bool operator<(const VectorIterator<value_type, true>& Iter) const
+			bool operator<(const VectorIterator<value_type, true>& iter) const
 			{
-				return (this->mArr < Iter.getPtr());
+				return (this->mPtr < iter.getPtr());
 			}
 
-			bool operator<=(const VectorIterator<value_type, false>& Iter) const
+			bool operator<=(const VectorIterator<value_type, false>& iter) const
 			{
-				return (this->mArr <= Iter.getPtr());
+				return (this->mPtr <= iter.getPtr());
 			}
 
-			bool operator<=(const VectorIterator<value_type, true>& Iter) const
+			bool operator<=(const VectorIterator<value_type, true>& iter) const
 			{
-				return (this->mArr <= Iter.getPtr());
+				return (this->mPtr <= iter.getPtr());
 			}
 
-			bool operator>(const VectorIterator<value_type, false>& Iter) const
+			bool operator>(const VectorIterator<value_type, false>& iter) const
 			{
-				return (this->mArr > Iter.getPtr());
+				return (this->mPtr > iter.getPtr());
 			}
 
-			bool operator>(const VectorIterator<value_type, true>& Iter) const
+			bool operator>(const VectorIterator<value_type, true>& iter) const
 			{
-				return (this->mArr > Iter.getPtr());
+				return (this->mPtr > iter.getPtr());
 			}
 
-			bool operator>=(const VectorIterator<value_type, false>& Iter) const
+			bool operator>=(const VectorIterator<value_type, false>& iter) const
 			{
-				return (this->mArr >= Iter.getPtr());
+				return (this->mPtr >= iter.getPtr());
 			}
 
-			bool operator>=(const VectorIterator<value_type, true>& Iter) const
+			bool operator>=(const VectorIterator<value_type, true>& iter) const
 			{
-				return (this->mArr >= Iter.getPtr());
+				return (this->mPtr >= iter.getPtr());
 			}
 
 			reference operator[](difference_type n) const
 			{
-				return (*(this->mArr + n));
+				return (*(this->mPtr + n));
 			}
 	};
 
 	template <typename T, bool isConst>
-	VectorIterator<T, isConst>	operator+(const typename VectorIterator<T, isConst>::difference_type n, const VectorIterator<T, isConst>& Iter)
+	VectorIterator<T, isConst>	operator+(const typename VectorIterator<T, isConst>::difference_type n, const VectorIterator<T, isConst>& iter)
 	{
-		return (VectorIterator<T, isConst>(Iter.getPtr() + n));
+		return (VectorIterator<T, isConst>(iter.getPtr() + n));
 	}
 }
 

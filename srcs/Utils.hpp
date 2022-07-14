@@ -19,105 +19,105 @@ namespace ft
 	class is_integral
 	{
 	public:
-		static const bool	value = false;
+		static const bool value = false;
 	};
 
 	template <>
 	class is_integral <bool>
 	{
 	public:
-		static const bool	value = true;
+		static const bool value = true;
 	};
 
 	template <>
 	class is_integral <char>
 	{
 	public:
-		static const bool	value = true;
+		static const bool value = true;
 	};
 
 	template <>
 	class is_integral <wchar_t>
 	{
 	public:
-		static const bool	value = true;
+		static const bool value = true;
 	};
 
 	template <>
 	class is_integral <int>
 	{
 	public:
-		static const bool	value = true;
+		static const bool value = true;
 	};
 
 	template <>
 	class is_integral <short>
 	{
 	public:
-		static const bool	value = true;
+		static const bool value = true;
 	};
 
 	template <>
 	class is_integral <long>
 	{
 	public:
-		static const bool	value = true;
+		static const bool value = true;
 	};
 
 	template <>
 	class is_integral <long long>
 	{
 	public:
-		static const bool	value = true;
+		static const bool value = true;
 	};
 
 	template <>
 	class is_integral <unsigned char>
 	{
 	public:
-		static const bool	value = true;
+		static const bool value = true;
 	};
 
 	template <>
 	class is_integral <unsigned short>
 	{
 	public:
-		static const bool	value = true;
+		static const bool value = true;
 	};
 
 	template <>
 	class is_integral <unsigned int>
 	{
 	public:
-		static const bool	value = true;
+		static const bool value = true;
 	};
 
 	template <>
 	class is_integral <unsigned long>
 	{
 	public:
-		static const bool	value = true;
+		static const bool value = true;
 	};
 
 	template <>
 	class is_integral <unsigned long long>
 	{
 	public:
-		static const bool	value = true;
+		static const bool value = true;
 	};
 
 	template <typename Type, typename constType, bool isConst = false>
 	class typeSelector
 	{
 	public:
-		typedef Type	type;
+		typedef Type type;
 	};
 
 	template <typename Type, typename constType>
 	class typeSelector<Type, constType, true>
 	{
 	public :
-		typedef constType	type;
+		typedef constType type;
 	};
 
 	template <typename T>

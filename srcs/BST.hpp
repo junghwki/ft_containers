@@ -1,8 +1,6 @@
 #ifndef BST_HPP
 # define BST_HPP
 
-#include <iostream>
-
 namespace ft
 {
 	template <typename T, typename Compare, typename Alloc>
@@ -19,20 +17,15 @@ namespace ft
 
 			Node()
 				: mParent(NULL), mLeft(NULL), mRight(NULL), mValue(T())
-			{
-				
-			};
+			{}
 
 			Node(T value, Node* nullNode)
 				: mParent(NULL), mLeft(nullNode), mRight(nullNode), mValue(value)
-			{
-				
-			};
+			{}
 
 			Node(const Node& node)
 				: mParent(node.mParent), mLeft(node.mLeft), mRight(node.mRight), mValue(node.mValue)
-			{
-			};
+			{}
 
 			Node& operator=(const Node& node)
 			{
@@ -42,12 +35,12 @@ namespace ft
 				this->mValue = node.mValue;
 
 				return (*this);
-			};
+			}
 
 			~Node()
-			{
-			};
+			{}
 		};
+		
 	private:
 		typedef typename Alloc::template rebind<Node>::other	nodeAlloc;
 
@@ -64,15 +57,13 @@ namespace ft
 		{
 			this->mNullNode = this->mNodeAlloc.allocate(1);
 			this->mNodeAlloc.construct(this->mNullNode, Node());
-			// *this->mNullNode = Node();
-		};
+		}
 
 		BST(const BST& arg)
 			: mRoot(NULL), mNodeAlloc(arg.mAlloc), mComp(arg.mComp), mSize(0)
 		{
 			this->mNullNode = this->mNodeAlloc.allocate(1);
 			this->mNodeAlloc.construct(this->mNullNode, Node());
-			// *this->mNullNode = Node();
 		}
 
 		~BST()
@@ -126,7 +117,6 @@ namespace ft
 
 			node = this->mNodeAlloc.allocate(1);
 			this->mNodeAlloc.construct(node, Node(value, this->mNullNode));
-			// *node = Node(value, this->mNullNode);
 			if (this->mRoot == NULL)
 			{
 				this->mRoot = node;
@@ -253,7 +243,9 @@ namespace ft
 			{
 				this->mRoot = temp;
 				if (delNode == temp)
+				{
 					this->mRoot = NULL;
+				}
 			}
 			this->nodeSwap(delNode, temp);
 			this->mNodeAlloc.destroy(delNode);
@@ -279,128 +271,7 @@ namespace ft
 			temp->mRight = delNode->mRight;
 			temp->mRight->mParent = temp;
 		}
-
-		// bool deleteNode(T value)
-		// {
-		// 	Node* delNode = this->searchNode(value);
-		// 	Node* temp = delNode;
-
-		// 	std::cout << "?? " << delNode->mValue.second << std::endl;
-		// 	if (!temp)
-		// 	{
-		// 		return (false);
-		// 	}
-		// 	if (temp->mLeft != this->mNullNode)
-		// 	{
-		// 		temp = temp->mLeft;
-		// 		while (temp->mRight != this->mNullNode)
-		// 		{
-		// 			temp = temp->mRight;
-		// 		}
-		// 		if (delNode != this->mRoot && delNode->mParent->mLeft == delNode)
-		// 		{
-		// 			delNode->mParent->mLeft = temp;
-		// 		}
-		// 		else if (delNode != this->mRoot)
-		// 		{
-		// 			delNode->mParent->mRight = temp;
-		// 		}
-		// 		else
-		// 		{
-		// 			this->mRoot = temp;
-		// 			this->mNullNode->mRight = this->mRoot;
-		// 		}
-				
-		// 		if (delNode->mLeft != temp)
-		// 		{
-		// 			std::cout << "??????????????" << std::endl;
-		// 			temp->mLeft->mParent = temp->mParent;
-		// 			// temp->parent->mRight가 작업 서순 이상해서 고쳐야됨씨빨꺼
-		// 			//////
-		// 			// temp->mParent->mRight = temp->mLeft;
-					
-		// 			temp->mLeft = delNode->mLeft;
-		// 			delNode->mLeft->mParent = temp;
-		// 			std::cout << "temp left " << temp->mLeft->mValue.second << std::endl;
-		// 			std::cout << delNode->mLeft->mParent->mValue.second << std::endl;
-		// 			std::cout << "temp parent " << temp->mParent->mValue.second << std::endl;
-		// 			std::cout << temp->mParent->mRight->mValue.second << std::endl;
-		// 			std::cout << delNode->mParent->mRight->mValue.second << std::endl;
-		// 		}
-		// 		temp->mParent = delNode->mParent;
-		// 		temp->mRight = delNode->mRight;
-		// 		delNode->mRight->mParent = temp;
-		// 		this->mNodeAlloc.destroy(delNode);
-		// 		this->mNodeAlloc.deallocate(delNode, 1);
-		// 	}
-		// 	else if (temp->mRight != this->mNullNode)
-		// 	{
-		// 		temp = temp->mRight;
-		// 		while (temp->mLeft != this->mNullNode)
-		// 		{
-		// 			temp = temp->mLeft;
-		// 		}
-
-		// 		if (delNode != this->mRoot && delNode->mParent->mLeft == delNode)
-		// 		{
-		// 			delNode->mParent->mLeft = temp;
-		// 		}
-		// 		else if (delNode != this->mRoot)
-		// 		{
-		// 			delNode->mParent->mRight = temp;
-		// 		}
-		// 		else
-		// 		{
-		// 			this->mRoot = temp;
-		// 			this->mNullNode->mRight = this->mRoot;
-		// 		}
-				
-		// 		if (delNode->mRight != temp)
-		// 		{
-		// 			temp->mRight->mParent = temp->mParent;
-		// 			temp->mParent->mRight = temp->mRight;
-					
-		// 			temp->mRight = delNode->mRight;
-		// 			delNode->mRight->mParent = temp;
-		// 		}
-		// 		temp->mParent = delNode->mParent;
-		// 		temp->mLeft = delNode->mLeft;
-		// 		delNode->mLeft->mParent = temp;
-		// 		this->mNodeAlloc.destroy(delNode);
-		// 		this->mNodeAlloc.deallocate(delNode, 1);
-		// 	}
-		// 	else
-		// 	{
-		// 		if (delNode == this->mRoot)
-		// 		{
-		// 			this->mRoot = NULL;
-		// 			this->mNullNode->mRight = this->mRoot;
-		// 		}
-		// 		else
-		// 		{
-		// 			if (temp->mParent->mRight == temp)
-		// 				temp->mParent->mRight = this->mNullNode;
-		// 			if (temp->mParent->mLeft == temp)
-		// 				temp->mParent->mLeft = this->mNullNode;
-		// 		}
-		// 		this->mNodeAlloc.destroy(delNode);
-		// 		this->mNodeAlloc.deallocate(delNode, 1);
-		// 	}
-		// 	--this->mSize;
-		// 	return (true);
-		// }
-		
-		void print() {
-			print(this->mRoot);
-		}
-
-		void print(Node* n) {
-			if (n == this->mNullNode)
-				return;
-			print(n->mLeft);
-			std::cout << n->mValue << std::endl;
-			print(n->mRight);
-		}
 	};
 }
+
 #endif

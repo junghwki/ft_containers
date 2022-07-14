@@ -1,8 +1,6 @@
 #ifndef ITERATOR_HPP
 # define ITERATOR_HPP
 
-#include <iostream>
-
 namespace ft
 {
 	class input_iterator_tag {};
@@ -81,8 +79,8 @@ namespace ft
 
 		reference operator*() const
 		{
-			Iterator tmp = this->mCurrent;
-			return (*--tmp);
+			Iterator temp = this->mCurrent;
+			return (*--temp);
 		}
 
 		pointer operator->() const
@@ -98,9 +96,9 @@ namespace ft
 
 		reverse_iterator operator++(int)
 		{
-			reverse_iterator tmp = *this;
+			reverse_iterator temp = *this;
 			--this->mCurrent;
-			return (tmp);
+			return (temp);
 		}
 
 		reverse_iterator &operator--()
@@ -111,9 +109,9 @@ namespace ft
 
 		reverse_iterator operator--(int)
 		{
-			reverse_iterator tmp = *this;
+			reverse_iterator temp = *this;
 			++this->mCurrent;
-			return (tmp);
+			return (temp);
 		}
 
 		reverse_iterator operator+(difference_type n) const
