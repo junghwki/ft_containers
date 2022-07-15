@@ -27,12 +27,12 @@ namespace ft
 				: mParent(node.mParent), mLeft(node.mLeft), mRight(node.mRight), mValue(node.mValue)
 			{}
 
-			Node& operator=(const Node& node)
+			Node& operator=(const Node& arg)
 			{
-				this->mParent = node.mParent;
-				this->mLeft = node.mLeft;
-				this->mRight = node.mRight;
-				this->mValue = node.mValue;
+				this->mParent = arg.mParent;
+				this->mLeft = arg.mLeft;
+				this->mRight = arg.mRight;
+				this->mValue = arg.mValue;
 
 				return (*this);
 			}
@@ -160,7 +160,7 @@ namespace ft
 
 		Node* searchNode(T value)
 		{
-			Node* temp = this->mRoot;
+			Node*	temp = this->mRoot;
 
 			while (temp != this->mNullNode && temp != NULL)
 			{
@@ -182,10 +182,10 @@ namespace ft
 
 		bool deleteNode(T value)
 		{
-			Node* delNode = searchNode(value);
-			Node* delParent;
-			Node* temp = delNode;
-			Node* tempParent;
+			Node*	delNode = searchNode(value);
+			Node*	delParent;
+			Node*	temp = delNode;
+			Node*	tempParent;
 
 			if (!delNode)
 			{
@@ -246,6 +246,7 @@ namespace ft
 				{
 					this->mRoot = NULL;
 				}
+				this->mNullNode->mRight = this->mRoot;
 			}
 			this->nodeSwap(delNode, temp);
 			this->mNodeAlloc.destroy(delNode);
@@ -253,7 +254,6 @@ namespace ft
 			--this->mSize;
 			return (true);
 		}
-
 
 		void nodeSwap(Node* delNode, Node* temp)
 		{

@@ -25,13 +25,11 @@ namespace ft
 
 	public:
 		MapIterator()
-		{
-		}
+		{}
 
 		MapIterator(Node* node, Node* nullNode)
 			: mNode(node), mNullNode(nullNode)
-		{
-		}
+		{}
 
 		MapIterator(MapIterator<value_type, comp, allocator_type, false> const &arg)
 		{
@@ -47,8 +45,7 @@ namespace ft
 		}
 
 		~MapIterator()
-		{
-		}
+		{}
 
 		Node* getNode() const
 		{
@@ -117,7 +114,7 @@ namespace ft
 
 		MapIterator operator++(int)
 		{
-			MapIterator ret(*this);
+			MapIterator	ret(*this);
 
 			++(*this);
 			return (ret);
@@ -153,7 +150,7 @@ namespace ft
 
 		MapIterator operator--(int)
 		{
-			MapIterator ret(*this);
+			MapIterator	ret(*this);
 
 			--(*this);
 			return (ret);

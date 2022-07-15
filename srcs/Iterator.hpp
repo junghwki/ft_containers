@@ -80,7 +80,8 @@ namespace ft
 		reference operator*() const
 		{
 			Iterator temp = this->mCurrent;
-			return (*--temp);
+
+			return (*(--temp));
 		}
 
 		pointer operator->() const
@@ -142,52 +143,52 @@ namespace ft
 		}
 	};
 
-	template <typename _Iterator>
+	template <typename _Iterator, typename _Iterator2>
 	bool operator==(const reverse_iterator<_Iterator> &__x,
-					const reverse_iterator<_Iterator> &__y)
+					const reverse_iterator<_Iterator2> &__y)
 	{
 		return (__x.base() == __y.base());
 	}
 
-	template <typename _Iterator>
+	template <typename _Iterator, typename _Iterator2>
 	bool operator<(const reverse_iterator<_Iterator> &__x,
-				   const reverse_iterator<_Iterator> &__y)
+				   const reverse_iterator<_Iterator2> &__y)
 	{
 		return (__y.base() < __x.base());
 	}
 
-	template <typename _Iterator>
+	template <typename _Iterator, typename _Iterator2>
 	bool operator!=(const reverse_iterator<_Iterator> &__x,
-					const reverse_iterator<_Iterator> &__y)
+					const reverse_iterator<_Iterator2> &__y)
 	{
 		return !(__x == __y);
 	}
 
-	template <typename _Iterator>
+	template <typename _Iterator, typename _Iterator2>
 	bool operator>(const reverse_iterator<_Iterator> &__x,
-				   const reverse_iterator<_Iterator> &__y)
+				   const reverse_iterator<_Iterator2> &__y)
 	{
 		return (__y < __x);
 	}
 
-	template <typename _Iterator>
+	template <typename _Iterator, typename _Iterator2>
 	bool operator<=(const reverse_iterator<_Iterator> &__x,
-					const reverse_iterator<_Iterator> &__y)
+					const reverse_iterator<_Iterator2> &__y)
 	{
 		return !(__y < __x);
 	}
 
-	template <typename _Iterator>
+	template <typename _Iterator, typename _Iterator2>
 	bool operator>=(const reverse_iterator<_Iterator> &__x,
-					const reverse_iterator<_Iterator> &__y)
+					const reverse_iterator<_Iterator2> &__y)
 	{
 		return !(__x < __y);
 	}
 
-	template <typename _Iterator>
+	template <typename _Iterator, typename _Iterator2>
 	typename reverse_iterator<_Iterator>::difference_type
 	operator-(const reverse_iterator<_Iterator> &__x,
-			  const reverse_iterator<_Iterator> &__y)
+			  const reverse_iterator<_Iterator2> &__y)
 	{
 		return (__y.base() - __x.base());
 	}
