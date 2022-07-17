@@ -12,7 +12,7 @@ namespace ft
 	{
 	public:
 		typedef T	type;
-	};
+	};//https://cplusplus.com/reference/type_traits/enable_if/?kw=enable_if
 
 	template <typename T>
 	class is_integral
@@ -43,6 +43,20 @@ namespace ft
 	};
 
 	template <>
+	class is_integral <signed char>
+	{
+	public:
+		static const bool	value = true;
+	};
+
+	template <>
+	class is_integral <short int>
+	{
+	public:
+		static const bool	value = true;
+	};
+
+	template <>
 	class is_integral <int>
 	{
 	public:
@@ -50,21 +64,14 @@ namespace ft
 	};
 
 	template <>
-	class is_integral <short>
+	class is_integral <long int>
 	{
 	public:
 		static const bool	value = true;
 	};
 
 	template <>
-	class is_integral <long>
-	{
-	public:
-		static const bool	value = true;
-	};
-
-	template <>
-	class is_integral <long long>
+	class is_integral <long long int>
 	{
 	public:
 		static const bool	value = true;
@@ -78,7 +85,7 @@ namespace ft
 	};
 
 	template <>
-	class is_integral <unsigned short>
+	class is_integral <unsigned short int>
 	{
 	public:
 		static const bool	value = true;
@@ -92,14 +99,14 @@ namespace ft
 	};
 
 	template <>
-	class is_integral <unsigned long>
+	class is_integral <unsigned long int>
 	{
 	public:
 		static const bool	value = true;
 	};
 
 	template <>
-	class is_integral <unsigned long long>
+	class is_integral <unsigned long long int>
 	{
 	public:
 		static const bool	value = true;
@@ -127,8 +134,7 @@ namespace ft
 		{
 			return (x < y);
 		}
-	};
-	//https://cplusplus.com/reference/functional/less/?kw=less
+	};//https://cplusplus.com/reference/functional/less/?kw=less
 
 	template <typename InputIterator1, typename InputIterator2>
 	bool equal (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2)
@@ -143,8 +149,7 @@ namespace ft
 			++first2;
 		}
 		return (true);
-	}
-	//https://cplusplus.com/reference/algorithm/equal/?kw=equal
+	}//https://cplusplus.com/reference/algorithm/equal/?kw=equal
 
 	template <typename InputIterator1, typename InputIterator2>
 	bool lexicographical_compare (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, InputIterator2 last2)
@@ -163,8 +168,7 @@ namespace ft
 			++first2;
 		}
 		return (first2 != last2);
-	}
-	//https://cplusplus.com/reference/algorithm/lexicographical_compare/?kw=lexicographical_compare
+	}//https://cplusplus.com/reference/algorithm/lexicographical_compare/?kw=lexicographical_compare
 }
 
 #endif

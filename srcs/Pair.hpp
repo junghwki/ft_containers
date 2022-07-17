@@ -34,46 +34,46 @@ namespace ft
 		}
 	};
 
-	template<typename _T1, typename _T2>
-	pair<_T1, _T2> make_pair(_T1 __x, _T2 __y)
+	template<typename T1, typename T2>
+	pair<T1, T2> make_pair(T1 x, T2 y)
 	{
-		return (pair<_T1, _T2>(__x, __y));
+		return (pair<T1, T2>(x, y));
 	}
 
-	template<typename _T1, typename _T2>
-	bool operator==(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+	template<typename T1, typename T2>
+	bool operator==(const pair<T1, T2>& x, const pair<T1, T2>& y)
 	{
-		return (__x.first == __y.first && __x.second == __y.second);
+		return (x.first == y.first && x.second == y.second);
 	}
 
-	template<typename _T1, typename _T2>
-	bool operator<(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+	template<typename T1, typename T2>
+	bool operator<(const pair<T1, T2>& x, const pair<T1, T2>& y)
 	{
-		return (__x.first < __y.first || (!(__y.first < __x.first) && __x.second < __y.second));
+		return (x.first < y.first || (!(y.first < x.first) && x.second < y.second));
 	}
 
-	template<typename _T1, typename _T2>
-	bool operator!=(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+	template<typename T1, typename T2>
+	bool operator!=(const pair<T1, T2>& x, const pair<T1, T2>& y)
 	{
-		return (!(__x == __y));
+		return (!(x == y));
 	}
 
-	template<typename _T1, typename _T2>
-	bool operator>(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+	template<typename T1, typename T2>
+	bool operator>(const pair<T1, T2>& x, const pair<T1, T2>& y)
 	{
-		return (__y < __x);
+		return (y < x);
 	}
 
-	template<typename _T1, typename _T2>
-	bool operator<=(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+	template<typename T1, typename T2>
+	bool operator<=(const pair<T1, T2>& x, const pair<T1, T2>& y)
 	{
-		return (!(__y < __x));
+		return (!(y < x));
 	}
 
-	template<typename _T1, typename _T2>
-	bool operator>=(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+	template<typename T1, typename T2>
+	bool operator>=(const pair<T1, T2>& x, const pair<T1, T2>& y)
 	{
-		return (!(__x < __y));
+		return (!(x < y));
 	}
 }	
 
