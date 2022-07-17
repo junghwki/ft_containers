@@ -37,43 +37,43 @@ namespace ft
 	template<typename _T1, typename _T2>
 	pair<_T1, _T2> make_pair(_T1 __x, _T2 __y)
 	{
-		return (pair<_T1, _T2>(__x, __y);)
+		return (pair<_T1, _T2>(__x, __y));
 	}
 
 	template<typename _T1, typename _T2>
 	bool operator==(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
 	{
-		return (__x.first == __y.first && __x.second == __y.second;)
+		return (__x.first == __y.first && __x.second == __y.second);
 	}
 
 	template<typename _T1, typename _T2>
 	bool operator<(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
 	{
-		return (__x.first < __y.first || (!(__y.first < __x.first) && __x.second < __y.second);)
+		return (__x.first < __y.first || (!(__y.first < __x.first) && __x.second < __y.second));
 	}
 
 	template<typename _T1, typename _T2>
 	bool operator!=(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
 	{
-		return (!(__x == __y);)
+		return (!(__x == __y));
 	}
 
 	template<typename _T1, typename _T2>
 	bool operator>(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
 	{
-		return (__y < __x;)
+		return (__y < __x);
 	}
 
 	template<typename _T1, typename _T2>
 	bool operator<=(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
 	{
-		return (!(__y < __x);)
+		return (!(__y < __x));
 	}
 
 	template<typename _T1, typename _T2>
 	bool operator>=(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
 	{
-		return (!(__x < __y);)
+		return (!(__x < __y));
 	}
 }	
 
