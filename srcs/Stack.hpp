@@ -1,7 +1,7 @@
 #ifndef STACK_HPP
 # define STACK_HPP
 
-#include "Vector.hpp"
+# include "vector.hpp"
 
 namespace ft
 {
@@ -48,11 +48,9 @@ namespace ft
 		}
 	
 	protected:
-	
-		Container c;
+		Container	c;
 
 	private:
-
 		template <typename U, class Cont>
 		friend bool operator==(const stack<U, Cont> &lhs, const stack<U, Cont> &rhs);
 
@@ -63,40 +61,40 @@ namespace ft
 		friend bool operator>(const stack<U, Cont> &lhs, const stack<U, Cont> &rhs);
 	};
 
-	template <typename T, typename Container>
-	bool operator==(const stack<T,Container>& lhs, const stack<T,Container>& rhs)
+	template<typename T, typename Container>
+	bool operator==(const stack<T, Container>& x, const stack<T, Container>& y)
 	{
-	  return (lhs.c == rhs.c);
+		return (x.c == y.c);
 	}
 
-	template <typename T, typename Container>
-	bool operator<(const stack<T,Container>& lhs, const stack<T,Container>& rhs)
+	template<typename T, typename Container>
+	bool operator<(const stack<T, Container>& x, const stack<T, Container>& y)
 	{
-	  return (lhs.c < rhs.c);
+		return (x.c < y.c);
 	}
 
-	template <typename T, typename Container>
-	bool operator!=(const stack<T,Container>& lhs, const stack<T,Container>& rhs)
+	template<typename T, typename Container>
+	bool operator!=(const stack<T, Container>& x, const stack<T, Container>& y)
 	{
-	  return !(lhs == rhs);
+		return (!(x == y));
 	}
 
-	template <typename T, typename Container>
-	bool operator>(const stack<T,Container>& lhs, const stack<T,Container>& rhs)
+	template<typename T, typename Container>
+	bool operator>(const stack<T, Container>& x, const stack<T, Container>& y)
 	{
-	  return (rhs < lhs);
+		return (y < x);
 	}
 
-	template <typename T, typename Container>
-	bool operator<=(const stack<T,Container>& lhs, const stack<T,Container>& rhs)
+	template<typename T, typename Container>
+	bool operator<=(const stack<T, Container>& x, const stack<T, Container>& y)
 	{
-	  return !(rhs < lhs);
+		return (!(y < x));
 	}
 
-	template <typename T, typename Container>
-	bool operator>=(const stack<T,Container>& lhs, const stack<T,Container>& rhs)
+	template<typename T, typename Container>
+	bool operator>=(const stack<T, Container>& x, const stack<T, Container>& y)
 	{
-	  return !(lhs < rhs);
+		return (!(x < y));
 	}
 }
 
