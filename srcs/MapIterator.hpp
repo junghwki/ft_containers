@@ -1,8 +1,8 @@
 #ifndef MAPITERATOR_HPP
-#define MAPITERATOR_HPP
+# define MAPITERATOR_HPP
 
-#include "Iterator.hpp"
-#include "Utils.hpp"
+# include "Iterator.hpp"
+# include "Utils.hpp"
 
 namespace ft
 {
@@ -41,7 +41,7 @@ namespace ft
 		{
 			mNode = arg.mNode;
 			mNullNode = arg.mNullNode;
-			return *this;
+			return (*this);
 		}
 
 		~MapIterator()
@@ -49,42 +49,42 @@ namespace ft
 
 		Node* getNode() const
 		{
-			return this->mNode;
+			return (this->mNode);
 		}
 
 		Node* getNullNode() const
 		{
-			return this->mNullNode;
+			return (this->mNullNode);
 		}
 
 		bool operator==(MapIterator<value_type, comp, allocator_type, true> const &arg) 
 		{
-			return this->mNode == arg.getNode();
+			return (this->mNode == arg.getNode());
 		}
 
 		bool operator==(MapIterator<value_type, comp, allocator_type, false> const &arg)
 		{
-			return this->mNode == arg.getNode();
+			return (this->mNode == arg.getNode());
 		}
 
 		bool operator!=(MapIterator<value_type, comp, allocator_type, true> const &arg) 
 		{
-			return this->mNode != arg.getNode();
+			return (this->mNode != arg.getNode());
 		}
 
 		bool operator!=(MapIterator<value_type, comp, allocator_type, false> const &arg)
 		{
-			 return this->mNode != arg.getNode();
+			 return (this->mNode != arg.getNode());
 		}
 
 		reference operator*() const
 		{
-			return this->mNode->mValue;
+			return (this->mNode->mValue);
 		}
 
 		pointer operator->() const
 		{
-			return &(operator*());
+			return (&(operator*()));
 		}
 
 		MapIterator &operator++()
