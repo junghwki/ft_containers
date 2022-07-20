@@ -6,19 +6,19 @@
 
 namespace ft
 {
-	template <typename T, bool isConst>
+	template <typename T, bool is_const>
 	class VectorIterator
 	{
 		public:
 		typedef T																			value_type;
 		typedef std::ptrdiff_t																difference_type;
 		typedef std::size_t																	size_type;
-		typedef typename ft::typeSelector<value_type*, const value_type*, isConst>::type	pointer;
-		typedef typename ft::typeSelector<value_type&, const value_type&, isConst>::type	reference;
+		typedef typename ft::typeSelector<value_type*, const value_type*, is_const>::type	pointer;
+		typedef typename ft::typeSelector<value_type&, const value_type&, is_const>::type	reference;
 		typedef typename ft::random_access_iterator_tag										iterator_category;
 
 	private:
-		pointer mPtr;
+		pointer																				mPtr;
 	
 	public:
 		VectorIterator()
@@ -183,10 +183,10 @@ namespace ft
 		}
 	};
 
-	template <typename T, bool isConst>
-	VectorIterator<T, isConst>	operator+(const typename VectorIterator<T, isConst>::difference_type n, const VectorIterator<T, isConst>& it)
+	template <typename T, bool is_const>
+	VectorIterator<T, is_const>	operator+(const typename VectorIterator<T, is_const>::difference_type n, const VectorIterator<T, is_const>& it)
 	{
-		return (VectorIterator<T, isConst>(it.getPtr() + n));
+		return (VectorIterator<T, is_const>(it.getPtr() + n));
 	}
 }
 

@@ -10,10 +10,10 @@ namespace ft
 		class Node
 		{
 		public:
-			Node*	mParent;
-			Node*	mLeft;
-			Node*	mRight;
-			T		mValue;
+			Node*												mParent;
+			Node*												mLeft;
+			Node*												mRight;
+			T													mValue;
 
 			Node()
 				: mParent(NULL), mLeft(NULL), mRight(NULL), mValue(T())
@@ -33,7 +33,6 @@ namespace ft
 				this->mLeft = arg.mLeft;
 				this->mRight = arg.mRight;
 				this->mValue = arg.mValue;
-
 				return (*this);
 			}
 
@@ -45,12 +44,12 @@ namespace ft
 		typedef typename Alloc::template rebind<Node>::other	nodeAlloc;
 
 	public:
-		Node*		mRoot;
-		Node*		mNullNode;
-		nodeAlloc	mNodeAlloc;
-		Alloc		mAlloc;
-		Compare		mComp;
-		size_t		mSize;
+		Node*													mRoot;
+		Node*													mNullNode;
+		nodeAlloc												mNodeAlloc;
+		Alloc													mAlloc;
+		Compare													mComp;
+		size_t													mSize;
 
 		BST(const Alloc& alloc = Alloc(), const Compare& comp = Compare())
 			: mRoot(NULL), mNodeAlloc(alloc), mComp(comp), mSize(0)

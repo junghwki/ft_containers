@@ -55,7 +55,7 @@ namespace ft
 		typedef typename iterator_traits<Iterator>::reference			reference;
 
 	protected:
-		Iterator	mCurrent;
+		Iterator														mCurrent;
 
 	public:
 		reverse_iterator()

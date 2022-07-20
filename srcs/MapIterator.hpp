@@ -20,8 +20,8 @@ namespace ft
 		typedef typename ft::BST<T, value_compare, Alloc>::Node								Node;
 
 	private:
-		Node*	mNode;
-		Node*	mNullNode;
+		Node*																				mNode;
+		Node*																				mNullNode;
 
 	public:
 		MapIterator()
