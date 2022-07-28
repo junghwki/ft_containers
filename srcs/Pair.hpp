@@ -7,11 +7,11 @@ namespace ft
 	class pair
 	{
 	public:
-		typedef T1	first_type;
-		typedef T2	second_type;
+		typedef T1		first_type;
+		typedef T2		second_type;
 
-		first_type	first;
-		second_type	second;
+		first_type		first;
+		second_type		second;
 
 		pair()
 			: first(first_type()), second(second_type())

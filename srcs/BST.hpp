@@ -76,7 +76,7 @@ namespace ft
 		{
 			if (this->mRoot)
 			{
-				clear(this->mRoot);
+				this->clear(this->mRoot);
 				this->mRoot = NULL;
 				this->mNullNode->mRight = this->mRoot;
 			}
@@ -102,8 +102,8 @@ namespace ft
 			{
 				return ;
 			}
-			clear(node->mLeft);
-			clear(node->mRight);
+			this->clear(node->mLeft);
+			this->clear(node->mRight);
 			this->mNodeAlloc.destroy(node);
 			this->mNodeAlloc.deallocate(node, 1);
 			--this->mSize;
@@ -181,7 +181,7 @@ namespace ft
 
 		bool deleteNode(T value)
 		{
-			Node*	delNode = searchNode(value);
+			Node*	delNode = this->searchNode(value);
 			Node*	delParent;
 			Node*	temp = delNode;
 			Node*	tempParent;

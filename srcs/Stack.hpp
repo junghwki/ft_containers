@@ -9,9 +9,9 @@ namespace ft
 	class stack
 	{
 	public:
-		typedef typename Container::value_type	value_type;
-		typedef typename Container::size_type	size_type;
-		typedef Container						container_type;
+		typedef typename Container::value_type		value_type;
+		typedef typename Container::size_type		size_type;
+		typedef Container							container_type;
 
 		explicit stack (const container_type& ctnr = container_type())
 			: c(ctnr)
@@ -46,21 +46,20 @@ namespace ft
 		{
 			c.pop_back();
 		}
+
+		template <typename U, typename Cont>
+		friend bool operator==(const stack<U, Cont>& lhs, const stack<U, Cont>& rhs);
+
+		template <typename U, typename Cont>
+		friend bool operator<(const stack<U, Cont>& lhs, const stack<U, Cont>& rhs);
+
+		template <typename U, typename Cont>
+		friend bool operator>(const stack<U, Cont>& lhs, const stack<U, Cont>& rhs);
 	
 	protected:
 		Container	c;
-
-	private:
-		template <typename U, class Cont>
-		friend bool operator==(const stack<U, Cont> &lhs, const stack<U, Cont> &rhs);
-
-		template <typename U, class Cont>
-		friend bool operator<(const stack<U, Cont> &lhs, const stack<U, Cont> &rhs);
-
-		template <typename U, class Cont>
-		friend bool operator>(const stack<U, Cont> &lhs, const stack<U, Cont> &rhs);
 	};
-
+	
 	template<typename T, typename Container>
 	bool operator==(const stack<T, Container>& x, const stack<T, Container>& y)
 	{
